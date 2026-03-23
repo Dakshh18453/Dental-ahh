@@ -239,43 +239,45 @@ const BookingForm = () => {
               </div>
 
               {/* Time Slots Area */}
-              {formData.date && (
-                <div className="form-group">
-                  <label>Available Time Slots *</label>
-                  {loadingSlots ? (
-                    <div style={{display:'flex', alignItems:'center', gap:'0.5rem', color:'white', padding:'0.5rem 0'}}>
-                       <Loader2 className="animate-spin" size={20} /> Checking live availability...
-                    </div>
-                  ) : slots.length > 0 ? (
-                    <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'0.5rem', marginTop:'0.5rem'}}>
-                      {slots.map((s, i) => (
-                        <button
-                          key={i}
-                          type="button"
-                          onClick={() => setSelectedSlot(s)}
-                          style={{
-                            padding: '0.75rem 0.5rem',
-                            background: selectedSlot?.start === s.start ? 'white' : 'rgba(255,255,255,0.1)',
-                            color: selectedSlot?.start === s.start ? 'var(--color-primary)' : 'white',
-                            border: `1px solid ${selectedSlot?.start === s.start ? 'white' : 'rgba(255,255,255,0.2)'}`,
-                            borderRadius: '6px',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s',
-                            fontWeight: 'bold',
-                            fontSize: '0.9rem'
-                          }}
-                        >
-                          {s.time}
-                        </button>
-                      ))}
-                    </div>
-                  ) : (
-                     <div style={{padding:'1rem', background:'rgba(0,0,0,0.1)', borderRadius:'8px', color:'white', textAlign:'center'}}>
-                       No slots available for this date. Please select another.
-                     </div>
-                  )}
-                </div>
-              )}
+              <div className="form-group">
+                <label>Available Time Slots *</label>
+                {!formData.date ? (
+                   <div style={{padding:'1rem', background:'rgba(0,0,0,0.1)', borderRadius:'8px', color:'white', textAlign:'center'}}>
+                     Please select an appointment date first to see available time slots.
+                   </div>
+                ) : loadingSlots ? (
+                  <div style={{display:'flex', alignItems:'center', gap:'0.5rem', color:'white', padding:'0.5rem 0'}}>
+                     <Loader2 className="animate-spin" size={20} /> Checking live availability...
+                  </div>
+                ) : slots.length > 0 ? (
+                  <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'0.5rem', marginTop:'0.5rem'}}>
+                    {slots.map((s, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setSelectedSlot(s)}
+                        style={{
+                          padding: '0.75rem 0.5rem',
+                          background: selectedSlot?.start === s.start ? 'white' : 'rgba(255,255,255,0.1)',
+                          color: selectedSlot?.start === s.start ? 'var(--color-primary)' : 'white',
+                          border: `1px solid ${selectedSlot?.start === s.start ? 'white' : 'rgba(255,255,255,0.2)'}`,
+                          borderRadius: '6px',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s',
+                          fontWeight: 'bold',
+                          fontSize: '0.9rem'
+                        }}
+                      >
+                        {s.time}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                   <div style={{padding:'1rem', background:'rgba(0,0,0,0.1)', borderRadius:'8px', color:'white', textAlign:'center'}}>
+                     No slots available for this date. Please select another.
+                   </div>
+                )}
+              </div>
 
               <div className="form-group mt-4">
                 <button type="submit" disabled={isSubmitting || !selectedSlot} style={{
