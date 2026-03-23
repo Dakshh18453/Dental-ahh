@@ -27,7 +27,7 @@ const Services = () => {
               </div>
               <h3 className="service-title">{t.title}</h3>
               <p className="service-desc">{t.desc}</p>
-              <a href="#booking" className="service-link btn-outline">Learn More</a>
+              <a href="#booking" className="service-link btn-outline">Book Appointment</a>
             </div>
           ))}
         </div>

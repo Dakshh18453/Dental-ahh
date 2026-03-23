@@ -32,7 +32,7 @@ const Hero = () => {
 
           <div className="hero-cta">
             <a href="#booking" className="btn btn-primary btn-large">
-              Book Free Checkup
+              Book Appointment
               <ArrowRight size={20} />
             </a>
             <a href="#services" className="btn btn-outline btn-large btn-white">
